@@ -1,7 +1,20 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+require_relative '../lib/populator_fix.rb'
+
+password = '123456'
+
+User.populate 15 do |u|
+  u.fullname = Faker::Name.name_with_middle
+  u.username = Faker::Internet.unique.username(specifier: u.username)
+  u.email = Faker::Internet.unique.email
+  u.photo = ""
+  u.coverimage = ""
+  u.encrypted_password = User.new(:password => password).encrypted_password
+end
+
+users = User.all
+
+users.each do |u|
+  3.times do |p|
+    u.posts.create({text: Faker::Lorem.sentence(word_count: 3, supplemental: false, random_words_to_add: 4)})
+  end
+end
