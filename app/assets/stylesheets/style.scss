@@ -1,0 +1,57 @@
+.light-background {
+  background-color: #f2f2f2;
+}
+
+.lat-bar {
+  min-height: 100vh;
+  align-self: stretch;
+}
+
+.lat-bar-img {
+  width: 65px;
+  height: 65px;
+}
+
+.btn-link {
+  background-color: transparent;
+  border-style: none;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+.btn-link:hover {
+  background-color: #007bff;
+  text-decoration: none !important;
+  color: white !important;
+}
+
+.form-resize-none {
+  resize: none;
+}
+
+.post-form-container {
+  border-radius: 5px;
+  border-color: #e6e6e6;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.post-form-field {
+  display: inline-block;
+  border-style: none;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+}
+
+.group-info {
+  background-image: url(background-4973341_1920.jpg);
+  height: 400px;
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+}

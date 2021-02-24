@@ -1,3 +1,79 @@
-<%= render 'layouts/nav' %>
-<h2> <%= @user.username %> </h2>
-<%= link_to "profile", user_path(@user) %>
+<div class="container-flex overflow-hidden">
+  <div class="row">
+    <div class="col-2 bg-dark lat-bar pt-3 px-0">
+      <%= render 'layouts/lateral_bar' %>
+    </div>
+    <div class="col pr-4">
+      <%= render 'layouts/nav_user' %>
+      <div class="row pt-5 light-background">
+        <div class="col-8">
+          <div class="row mb-3 px-3">
+            <div class="col p-5 bg-white rounded">
+              <h2>Post something</h2>
+              <%= form_with model: @post do |form| %>
+                <div class="d-flex flex-wrap justify-content-end post-form-container">
+                  <%= form.text_area :text, class: 'post-form-field form-resize-none w-100', placeholder: 'Add New Post' %>
+                  <%= form.submit 'Publish', class: 'btn-link' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col">
+              <% @timeline_posts.each do |p| %>
+                <div class="p-3 mb-2 d-flex flex-column bg-white rounded">
+                  <div class="d-flex flex-row">
+                    <div>
+                      <%= link_to user_path(p.author.id) do %>
+                        <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                      <% end %>
+                    </div>
+                    <div class = "pl-2 d-flex flex-column w-100 mb-3">
+                      <%= link_to p.author.username, user_path(p.author.id) %>
+                      <%= p.text %>
+                    </div>
+                  </div>
+                  <% if p.author == current_user %>
+                    <%= button_to 'Delete', post_path(p), method: :delete, action: :destroy %>
+                  <% end %>
+                  <div class="d-flex flex-column py-3" >
+                    <%= form_for(p.comments.new, url: post_comments_path(p)) do |form| %>
+                      <div class="d-flex flex-wrap justify-content-end post-form-container">
+                        <%= form.text_area :text, id: :text_content, class: 'post-form-field form-resize-none w-100', placeholder: 'Add new Comment' %>
+                        <%= form.submit 'Comment', class: 'btn-link' %>
+                      </div>
+                    <% end %>
+                    <% if p.comments %>
+                      <% p.comments.each do |c| %>
+                        <% if c.id %>
+                          <div class="d-flex flex-row py-3">
+                            <%= link_to user_path(c.author.id) do %>
+                              <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                            <% end %>
+                            <div class="pl-2 d-flex flex-column w-100 ">
+                              <%= link_to c.author.username, user_path(c.author.id) %>
+                              <%= c.text %>
+                            </div>
+                            <% if c.author == current_user %>
+                              <%= button_to 'Delete', post_comment_path(p.id, c.id), method: :delete %>
+                            <% end %>
+                          </div>
+                        <%end%>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col align-self-stretch">
+          <h4>Who to follow</h4>
+          <div class="">
+            <%= render @user_timeline %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

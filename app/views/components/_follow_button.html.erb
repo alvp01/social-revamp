@@ -1,0 +1,7 @@
+<% unless current_user.id == user.id %>
+  <% if !current_user.followees.include?(user) %>
+    <%= button_to 'Follow', follow_user_path(id: user.id), class: "btn-link", method: 'post' %>
+  <% else %>
+    <%= button_to 'Unfollow', unfollow_user_path(id: user.id), class: "btn-link", method: 'post' %>
+  <% end %>
+<% end %>
