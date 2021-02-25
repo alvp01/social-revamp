@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_25_081410) do
+ActiveRecord::Schema.define(version: 2021_02_25_082010) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,16 @@ ActiveRecord::Schema.define(version: 2021_02_25_081410) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["AuthorId"], name: "index_comments_on_AuthorId"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+  end
+
+  create_table "group_registrations", force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "member_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_registrations_on_group_id"
+    t.index ["member_id", "group_id"], name: "index_group_registrations_on_member_id_and_group_id"
+    t.index ["member_id"], name: "index_group_registrations_on_member_id"
   end
 
   create_table "groups", force: :cascade do |t|
