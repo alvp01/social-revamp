@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_24_012440) do
+ActiveRecord::Schema.define(version: 2021_02_25_081410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,17 @@ ActiveRecord::Schema.define(version: 2021_02_24_012440) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["AuthorId"], name: "index_comments_on_AuthorId"
     t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "group_name", null: false
+    t.string "group_description"
+    t.integer "creator_id", null: false
+    t.string "cover_image", default: ""
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["creator_id"], name: "index_groups_on_creator_id", unique: true
+    t.index ["group_name"], name: "index_groups_on_group_name", unique: true
   end
 
   create_table "posts", force: :cascade do |t|
