@@ -14,4 +14,10 @@ class User < ApplicationRecord
 
   has_many :followees, through: :followed_users, source: :followed
   has_many :followers, through: :following_users, source: :follower
+
+  has_many :created_groups, class_name: 'Group', foreign_key: 'creator_id'
+
+  has_many :group_registrations, class_name: 'GroupRegistration', foreign_key: 'member_id'
+
+  has_many :groups, through: :group_registrations, source: :group
 end
