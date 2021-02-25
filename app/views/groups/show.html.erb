@@ -5,46 +5,48 @@
     </div>
     <div class="col pr-4">
       <%= render 'layouts/nav_user' %>
+      <div class="d-flex flex-column w-100 group-info p-5">
+        <h2 class="capitalize-text display-4"> <%= @current_group.group_name %> </h2>
+        
+      </div>
       <div class="row pt-5 light-background">
         <div class="col-9">
           <div class="row mb-3 px-3">
             <div class="col p-5 bg-white rounded">
-              <h2>Post something</h2>
-              <%= form_with model: @post do |form| %>
+              <h2>Discuss something</h2>
+              <%= form_with model: @discussion do |form| %>
                 <div class="d-flex flex-wrap justify-content-end post-form-container">
-                  <%= form.text_area :text, class: 'post-form-field form-resize-none w-100', placeholder: 'Add New Post' %>
+                  <%= form.text_area :text, class: 'post-form-field form-resize-none w-100', placeholder: 'Add New Discussion' %>
+                  <%= form.hidden_field :group_id, :value => @current_group.id %>
                   <%= form.submit 'Publish', class: 'btn-link' %>
                 </div>
               <% end %>
             </div>
           </div>
-          <div class="row mt-5">
+          <div class="row mt-5 align-self-stretch">
             <div class="col">
-              <% @timeline_posts.each do |p| %>
+              <% @discussion_timeline.each do |d| %>
                 <div class="p-3 mb-2 d-flex flex-column bg-white rounded">
                   <div class="d-flex flex-row">
                     <div>
-                      <%= link_to user_path(p.author.username) do %>
-                      <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                      <%= link_to user_path(d.author.username) do %>
+                        <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
                       <% end %>
                     </div>
-                    <div class="pl-2 d-flex flex-column w-100 mb-3">
-                      <%= link_to p.author.username, user_path(p.author.username) %>
-                      <%= p.text %>
+                    <div class = "pl-2 d-flex flex-column w-100 mb-3">
+                      <%= link_to d.author.username, user_path(d.author.username) %>
+                      <%= d.text %>
                     </div>
                   </div>
-                  <% if p.author == current_user %>
-                    <%= button_to 'Delete', post_path(p), method: :delete, action: :destroy %>
-                  <% end %>
-                  <div class="d-flex flex-column py-3">
-                    <%= form_for(p.comments.new, url: post_comments_path(p)) do |form| %>
+                  <div class="d-flex flex-column py-3" >
+                    <%= form_for(d.comments.new, url: discussion_comments_path(d)) do |form| %>
                       <div class="d-flex flex-wrap justify-content-end post-form-container">
                         <%= form.text_area :text, id: :text_content, class: 'post-form-field form-resize-none w-100', placeholder: 'Add new Comment' %>
                         <%= form.submit 'Comment', class: 'btn-link' %>
                       </div>
                     <% end %>
-                    <% if p.comments %>
-                      <% p.comments.each do |c| %>
+                    <% if d.comments %>
+                      <% d.comments.each do |c| %>
                         <% if c.id %>
                           <div class="d-flex flex-row py-3">
                             <%= link_to user_path(c.author.username) do %>
@@ -54,9 +56,6 @@
                               <%= link_to c.author.username, user_path(c.author.username) %>
                               <%= c.text %>
                             </div>
-                            <% if c.author == current_user %>
-                              <%= button_to 'Delete', post_comment_path(p.id, c.id), method: :delete %>
-                            <% end %>
                           </div>
                         <%end%>
                       <% end %>
@@ -68,26 +67,19 @@
           </div>
         </div>
         <div class="col align-self-stretch">
-          <h4>Who to follow</h4>
-          <div class="">
-            <%= render @user_timeline %>
+          <div>
+            <h4>Creator</h4>
+            <div class="">
+              <%= render @creator %>
+            </div>
           </div>
           <div>
-            <h4>Groups</h4>
-            <%= button_to "create group", new_group_path, method: :get %>
-            <% @groups.each do |g|%>
-            <div class="d-flex flex-row py-2">
-              <div>
-                <%= link_to group_path(g.id) do %>
-                <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
-                <% end %>
-              </div>
-              <div class="pl-2 d-flex flex-column w-100 mb-3">
-                <%= link_to g.group_name, group_path(g.id) %>
-              </div>
+            <h4>Members</h4>
+            <div class="">
+              <%= render @members %>
             </div>
-            <% end %>
           </div>
+
         </div>
       </div>
     </div>

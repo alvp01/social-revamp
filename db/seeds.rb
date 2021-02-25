@@ -4,7 +4,7 @@ password = '123456'
 
 User.populate 15 do |u|
   u.fullname = Faker::Name.name_with_middle
-  u.username = Faker::Internet.unique.username(specifier: u.username)
+  u.username = Faker::Internet.unique.username(specifier: u.username, separators: %w(_ -))
   u.email = Faker::Internet.unique.email
   u.photo = ""
   u.coverimage = ""

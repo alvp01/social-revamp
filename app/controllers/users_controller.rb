@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_username(params[:username])
     @posts = @user.posts.ordered_by_most_recent
     @post = Post.new
     @followers = @user.followers
@@ -12,6 +12,8 @@ class UsersController < ApplicationController
     timeline_posts
     who_to_follow
     @user = current_user
+    @group = Group.new
+    @groups = Group.all
   end
 
   def follow

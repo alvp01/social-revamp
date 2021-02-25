@@ -1,0 +1,27 @@
+<div class="container-flex overflow-hidden">
+  <div class="row">
+    <div class="col-2 bg-dark lat-bar pt-3 px-0">
+      <%= render 'layouts/lateral_bar' %>
+    </div>
+    <div class="col pr-4">
+      <%= render 'layouts/nav_user' %>
+      <div class="row pt-5 light-background">
+        <div class="col">
+          <div class="row mb-3 px-3">
+            <div class="col p-5 bg-white rounded">
+              <h2>Create Group</h2>
+              <%= form_with scope: :group, url: groups_url, method: :post do |form| %>
+                <div class="d-flex flex-wrap justify-content-end post-form-container">
+                  <%= form.text_field :group_name, placeholder: 'Group name'%>
+                  <%= form.text_area :group_description, class: 'post-form-field form-resize-none w-100', placeholder: 'Group description' %>
+                  <%= form.hidden_field :creator_id, :value => current_user.id %>
+                  <%= form.submit 'Create', class: 'btn-link' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

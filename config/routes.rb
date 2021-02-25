@@ -5,10 +5,16 @@ Rails.application.routes.draw do
 
   post 'users/:id/follow', to: 'users#follow', as: 'follow_user'
   post 'users/:id/unfollow', to: 'users#unfollow', as: 'unfollow_user'
-  resources :users, only: %i[index show]
-  resources :posts do
-    resources :comments
+  get '/users', to: 'users#index'
+  get '/:username', to: 'users#show', as: "user"
+  resources :posts, only: %i[new create destroy] do
+    resources :comments, only: %i[new create destroy]
   end
+  resources :discussions, only: %i[new create destroy] do
+    resources :comments, only: %i[new create destroy]
+  end
+
+  resources :groups, only: %i[new create destroy show]
 
   root to: 'users#index'
 end
