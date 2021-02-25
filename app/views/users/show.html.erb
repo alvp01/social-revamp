@@ -1,3 +1,66 @@
-<%= render 'layouts/nav' %>
-<h2> <%= @user.username %> </h2>
-<p> show method </p>
+<div class="container-flex overflow-hidden">
+  <div class="row">
+    <div class="col-2 bg-dark lat-bar pt-3 px-0">
+      <%= render 'layouts/lateral_bar' %>
+    </div>
+    <div class="col pr-4">
+      <%= render 'layouts/nav_user' %>
+      <div class="row pt-5 light-background">
+        <div class="col-8 align-self-stretch">
+          <%= profile_post(@user, @post) %>
+          <div class="row">
+            <div class="col">
+              <% @posts.each do | p | %>
+                <div class="p-3 mb-2 d-flex flex-column bg-white rounded">
+                  <div class="d-flex flex-row">
+                    <div>
+                      <%= link_to user_path(p.author.username) do %>
+                        <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                      <% end %>
+                    </div>
+                    <div class = "pl-2 d-flex flex-column w-100 mb-3">
+                      <%= link_to p.author.username, user_path(p.author.username) %>
+                      <%= p.text %>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-column py-3" >
+                    <%= form_for(p.comments.new, url: post_comments_path(p)) do |form| %>
+                      <div class="d-flex flex-wrap justify-content-end post-form-container">
+                        <%= form.text_area :text, id: :text_content, class: 'post-form-field form-resize-none w-100', placeholder: 'Add new Comment' %>
+                        <%= form.submit 'Comment', class: 'btn-link' %>
+                      </div>
+                    <% end %>
+                    <% if p.comments %>
+                      <% p.comments.each do |c| %>
+                        <% if c.id %>
+                          <div class="d-flex flex-row py-3">
+                            <%= link_to user_path(c.author.username) do %>
+                              <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                            <% end %>
+                            <div class="pl-2 d-flex flex-column w-100 ">
+                              <%= link_to c.author.username, user_path(c.author.username) %>
+                              <%= c.text %>
+                            </div>
+                          </div>
+                        <%end%>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col align-self-stretch">
+          <%= profile_owner(@user) %>
+          <section>
+            <h4>Followed by</h4>
+            <div class="">
+              <%= render partial: "users/user", collection: @followers %>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

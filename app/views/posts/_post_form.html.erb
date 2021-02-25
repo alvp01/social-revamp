@@ -1,0 +1,11 @@
+<div class="row mb-5 px-3">
+  <div class="col p-5 bg-white rounded">
+    <h2>Post something</h2>
+    <%= form_with model: post do |form| %>
+      <div class="d-flex flex-wrap justify-content-end post-form-container">
+        <%= form.text_area :text, class: 'post-form-field form-resize-none w-100', placeholder: 'Add New Post' %>
+        <%= form.submit 'Publish', class: 'btn-link' %>
+      </div>
+    <% end %>
+  </div>
+</div>
