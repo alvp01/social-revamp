@@ -42,5 +42,6 @@ class UsersController < ApplicationController
       .all
       .ordered_by_most_recent
       .includes(:author)
+      .includes(:comments)
   end
 end

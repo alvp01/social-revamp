@@ -57,12 +57,10 @@ class GroupsController < ApplicationController
 
   def discussion_timeline
     current_group = find_current_group
-    creator = current_group.creator
-    members_array = current_group.members.map { |group_member| group_member }
-    @discussion_timeline ||= Discussion
-      .where(author: members_array.compact << creator)
-      .all
+    @discussion_timeline = current_group
+      .discussions
       .ordered_by_most_recent
       .includes(:author)
+      .includes(:comments)
   end
 end
