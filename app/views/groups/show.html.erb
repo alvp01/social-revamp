@@ -7,7 +7,7 @@
       <%= render 'layouts/nav_user' %>
       <div class="d-flex flex-column w-100 group-info p-5">
         <h2 class="capitalize-text display-4"> <%= @current_group.group_name %> </h2>
-        
+        <%= join_leave(@current_group) %>
       </div>
       <div class="row pt-5 light-background">
         <div class="col-9">
