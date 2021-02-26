@@ -13,7 +13,7 @@ class DiscussionsController < ApplicationController
       current_user.discussions << @discussion
       redirect_back(fallback_location: group_path(current_group.id))
     else
-      redirect_back(fallback_location: group_path(current_group.id)), notice: 'Post could not be created!'
+      redirect_back(fallback_location: group_path(current_group.id))
     end
   end
 
