@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   end
 
   resources :groups, only: %i[new create destroy show]
+  post 'groups/:id/join', to: 'groups#join', as: 'group_join'
+  post 'groups/:id/leave', to: 'groups#leave', as: 'group_leave'
 
   root to: 'users#index'
 end

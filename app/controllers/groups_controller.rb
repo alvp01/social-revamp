@@ -21,6 +21,20 @@ class GroupsController < ApplicationController
     end
   end
 
+  def join
+    @group = Group.find(params[:id])
+    registration = GroupRegistration.create(group_id: @group.id, member_id: current_user.id)
+    current_user.group_registrations << registration
+    @group.registrations << registration
+    redirect_back(fallback_location: home_path)
+  end
+
+  def leave
+    @group = Group.find(params[:id])
+    GroupRegistration.find_by(group_id: @group.id, member_id: current_user.id).destroy
+    redirect_back(fallback_location: home_path)
+  end
+
   private
 
   def group_params
