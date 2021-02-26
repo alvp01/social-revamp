@@ -4,8 +4,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    post_discuss = Post.find(params[:post_id])
-
+    post_discuss = !params[:post_id].nil? ? Post.find(params[:post_id]) : Discussion.find(params[:discussion_id])
     @comment = post_discuss.comments.new(comment_params)
     @comment.author = current_user
     @comment.save
