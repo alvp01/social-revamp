@@ -37,6 +37,9 @@
                       <%= link_to d.author.username, user_path(d.author.username) %>
                       <%= d.text %>
                     </div>
+                    <% if d.author == current_user %>
+                      <%= button_to 'Delete', discussion_path(d.id), method: :delete %>
+                    <% end %>
                   </div>
                   <div class="d-flex flex-column py-3" >
                     <%= form_for(d.comments.new, url: discussion_comments_path(d)) do |form| %>
@@ -56,6 +59,9 @@
                               <%= link_to c.author.username, user_path(c.author.username) %>
                               <%= c.text %>
                             </div>
+                            <% if c.author == current_user %>
+                              <%= button_to 'Delete', discussion_comment_path(d.id, c.id), method: :delete %>
+                            <% end %>
                           </div>
                         <%end%>
                       <% end %>

@@ -17,6 +17,12 @@ class DiscussionsController < ApplicationController
     end
   end
 
+  def destroy
+    Discussion.find(params[:id]).delete
+    flash[:success] = 'Comment deleted'
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def discussion_params
