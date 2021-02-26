@@ -21,6 +21,16 @@ class GroupsController < ApplicationController
     end
   end
 
+  def destroy
+    @group = Group.find(params[:id])
+    if @group.delete
+      redirect_to root_path, notice: 'Group deleted successfully'
+    else
+      flash.now[:alert] = 'Group could not be deleted'
+      redirect_back(fallback_location: group_path(@group.id))
+    end
+  end
+
   def join
     @group = Group.find(params[:id])
     registration = GroupRegistration.create(group_id: @group.id, member_id: current_user.id)
