@@ -1,3 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@500&display=swap');
+
+.font-test { font-family: 'Montserrat Alternates', sans-serif; }
+
 .no-overflow-x {
   overflow-x: hidden;
 }
@@ -58,4 +62,21 @@
 
 .capitalize-text {
   text-transform: capitalize;
+}
+
+.group-name-field {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.group-name-field::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 1px;
+  left: 40%;
+  bottom: 0;
+  border-radius: 0px;
+  border-bottom: 2px solid #e6e6e6;
 }

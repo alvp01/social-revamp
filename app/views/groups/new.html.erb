@@ -5,14 +5,17 @@
     </div>
     <div class="col pr-4">
       <%= render 'layouts/nav_user' %>
-      <div class="row pt-5 light-background">
+      <div class="row pt-5 light-background h-100">
         <div class="col">
           <div class="row mb-3 px-3">
             <div class="col p-5 bg-white rounded">
               <h2>Create Group</h2>
               <%= form_with scope: :group, url: groups_url, method: :post do |form| %>
                 <div class="d-flex flex-wrap justify-content-end post-form-container">
-                  <%= form.text_field :group_name, placeholder: 'Group name'%>
+                  <div class="post-form-field form-resize-none w-100 group-name-field mb-2">
+                    <%= form.text_field :group_name, class: 'post-form-field form-resize-none w-100', placeholder: 'Group name'%>
+                  </div>
+                  
                   <%= form.text_area :group_description, class: 'post-form-field form-resize-none w-100', placeholder: 'Group description' %>
                   <%= form.hidden_field :creator_id, :value => current_user.id %>
                   <%= form.submit 'Create', class: 'btn-link' %>
