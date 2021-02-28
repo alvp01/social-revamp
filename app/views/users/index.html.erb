@@ -69,23 +69,23 @@
         </div>
         <div class="col align-self-stretch">
           <h4 class="font-roboto">Who to follow</h4>
-          <div class="">
+          <div class="mb-5">
             <%= render @user_timeline %>
           </div>
           <div>
-            <h4 class="font-roboto">Groups</h4>
-            <%= button_to "create group", new_group_path, method: :get %>
+            <h4 class="font-roboto mb-4">Groups</h4>
+            <%= button_to "create group", new_group_path, method: :get, class: "mb-3 btn-create-join font-varela" %>
             <% @groups.each do |g|%>
-            <div class="d-flex flex-row py-2">
-              <div>
-                <%= link_to group_path(g.id) do %>
-                <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
-                <% end %>
+              <div class="d-flex flex-row py-2 align-items-center">
+                <div class="mr-2">
+                  <%= link_to group_path(g.id) do %>
+                    <%= image_tag("default-group.png", class: "rounded lat-bar-img") %>
+                  <% end %>
+                </div>
+                <div class="pl-2 d-flex flex-column w-100 mb-3">
+                  <%= link_to g.group_name, group_path(g.id), class: "group-link font-nunito text-bold" %>
+                </div>
               </div>
-              <div class="pl-2 d-flex flex-column w-100 mb-3">
-                <%= link_to g.group_name, group_path(g.id) %>
-              </div>
-            </div>
             <% end %>
           </div>
         </div>

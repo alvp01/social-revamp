@@ -26,7 +26,7 @@
   height: 65px;
 }
 
-.btn-link, .btn-delete {
+.btn-link, .btn-delete, .btn-create-join {
   background-color: transparent;
   border-style: none;
   text-decoration: none;
@@ -42,6 +42,12 @@
 
 .btn-delete:hover {
   background-color: #df1d57;
+  text-decoration: none !important;
+  color: white !important;
+}
+
+.btn-create-join:hover {
+  background-color: #29ac3f;
   text-decoration: none !important;
   color: white !important;
 }
@@ -93,16 +99,26 @@
   border-bottom: 2px solid #e6e6e6;
 }
 
-.username-profile-link, .user-profile-link, .group-link {
+.username-profile-link, .user-profile-link {
   text-decoration: none;
   color: black;
 }
 
-.user-profile-link:hover, .username-profile-link:hover, .group-link:hover {
+.user-profile-link:hover, .username-profile-link:hover {
   color: #5284b6;
   text-decoration: none;
 }
 
 .username-profile-link {
   font-size: 14px;
+}
+
+.group-link {
+  color: #5284b6;
+  text-decoration: none;
+}
+
+.group-link:hover {
+  text-decoration: none;
+  color: black;
 }
