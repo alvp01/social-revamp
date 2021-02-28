@@ -6,19 +6,19 @@
     <div class="col pr-4">
       <%= render 'layouts/nav_user' %>
       <div class="d-flex flex-column w-100 group-info p-5">
-        <h2 class="capitalize-text display-4"> <%= @current_group.group_name %> </h2>
+        <h2 class="capitalize-text display-4 font-roboto"> <%= @current_group.group_name %> </h2>
         <%= join_leave_delete(@current_group) %>
       </div>
       <div class="row pt-5 light-background">
         <div class="col-9">
           <div class="row mb-3 px-3">
             <div class="col p-5 bg-white rounded">
-              <h2>Discuss something</h2>
+              <h2 class="font-roboto">Discuss something</h2>
               <%= form_with model: @discussion do |form| %>
                 <div class="d-flex flex-wrap justify-content-end post-form-container">
                   <%= form.text_area :text, class: 'post-form-field form-resize-none w-100', placeholder: 'Add New Discussion' %>
                   <%= form.hidden_field :group_id, :value => @current_group.id %>
-                  <%= form.submit 'Publish', class: 'btn-link' %>
+                  <%= form.submit 'Publish', class: 'btn-link font-varela' %>
                 </div>
               <% end %>
             </div>
@@ -59,9 +59,7 @@
                               <%= link_to c.author.username, user_path(c.author.username) %>
                               <%= c.text %>
                             </div>
-                            <% if c.author == current_user %>
-                              <%= button_to 'Delete', discussion_comment_path(d.id, c.id), method: :delete %>
-                            <% end %>
+                            <%= delete_discussion_comment(d,c)%>
                           </div>
                         <%end%>
                       <% end %>
@@ -73,19 +71,18 @@
           </div>
         </div>
         <div class="col align-self-stretch">
-          <div>
-            <h4>Creator</h4>
-            <div class="">
+          <div class="mb-5">
+            <h4 class="font-roboto">Creator</h4>
+            <div>
               <%= render @creator %>
             </div>
           </div>
           <div>
-            <h4>Members</h4>
-            <div class="">
+            <h4 class="font-roboto">Members</h4>
+            <div>
               <%= render @members %>
             </div>
           </div>
-
         </div>
       </div>
     </div>
