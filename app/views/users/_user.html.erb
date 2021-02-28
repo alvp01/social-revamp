@@ -4,7 +4,8 @@
       <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
     <% end %>
   </div>
-  <div class = "pl-2 d-flex flex-column w-100 mb-3">
-    <%= link_to user.username, user_path(user.username), class: "font-montserrat" %>
+  <div class = "pl-2 d-flex flex-column w-100 mb-3 pt-1">
+    <%= link_to user.fullname, user_path(user.username), class: "font-nunito user-profile-link text-bold" %>
+    <%= link_to "@#{user.username}", user_path(user.username), class: "font-nunito username-profile-link" %>
   </div>
 </div>

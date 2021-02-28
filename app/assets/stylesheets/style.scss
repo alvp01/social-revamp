@@ -86,3 +86,17 @@
   border-radius: 0px;
   border-bottom: 2px solid #e6e6e6;
 }
+
+.username-profile-link, .user-profile-link {
+  text-decoration: none;
+  color: black;
+}
+
+.user-profile-link:hover, .username-profile-link:hover {
+  color: #5284b6;
+  text-decoration: none;
+}
+
+.username-profile-link {
+  font-size: 14px;
+}
