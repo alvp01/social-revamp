@@ -8,4 +8,8 @@ module GroupsHelper
       render './components/join_button', grp: grp
     end
   end
+
+  def group_discussion(group, discussion)
+    render './discussions/discussion_form', current_group: group, discussion: discussion if (group.members.include?(current_user) or group.creator == current_user)
+  end
 end

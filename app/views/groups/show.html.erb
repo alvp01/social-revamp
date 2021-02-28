@@ -7,22 +7,16 @@
       <%= render 'layouts/nav_user' %>
       <div class="d-flex flex-column w-100 group-info p-5">
         <h2 class="capitalize-text display-4 font-roboto"> <%= @current_group.group_name %> </h2>
-        <%= join_leave_delete(@current_group) %>
+        <p class="text-bold text-varela">
+          <%= @current_group.group_description%>
+        </p>
+        <div class="align-self-end">
+          <%= join_leave_delete(@current_group) %>
+        </div>        
       </div>
       <div class="row pt-5 light-background">
         <div class="col-9">
-          <div class="row mb-3 px-3">
-            <div class="col p-5 bg-white rounded">
-              <h2 class="font-roboto">Discuss something</h2>
-              <%= form_with model: @discussion do |form| %>
-                <div class="d-flex flex-wrap justify-content-end post-form-container">
-                  <%= form.text_area :text, class: 'post-form-field form-resize-none w-100', placeholder: 'Add New Discussion' %>
-                  <%= form.hidden_field :group_id, :value => @current_group.id %>
-                  <%= form.submit 'Publish', class: 'btn-link font-varela' %>
-                </div>
-              <% end %>
-            </div>
-          </div>
+          <%= group_discussion(@current_group, @discussion) %>
           <div class="row mt-5 align-self-stretch">
             <div class="col">
               <% @discussion_timeline.each do |d| %>
@@ -37,15 +31,13 @@
                       <%= link_to d.author.username, user_path(d.author.username) %>
                       <%= d.text %>
                     </div>
-                    <% if d.author == current_user %>
-                      <%= button_to 'Delete', discussion_path(d.id), method: :delete %>
-                    <% end %>
+                    <%= discussion_delete(d) %>
                   </div>
                   <div class="d-flex flex-column py-3" >
                     <%= form_for(d.comments.new, url: discussion_comments_path(d)) do |form| %>
                       <div class="d-flex flex-wrap justify-content-end post-form-container">
                         <%= form.text_area :text, id: :text_content, class: 'post-form-field form-resize-none w-100', placeholder: 'Add new Comment' %>
-                        <%= form.submit 'Comment', class: 'btn-link' %>
+                        <%= form.submit 'Comment', class: 'btn-link font-varela' %>
                       </div>
                     <% end %>
                     <% if d.comments %>
