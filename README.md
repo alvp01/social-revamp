@@ -15,11 +15,11 @@
 
 ## Live Demo
 
-- https://dashboard.heroku.com/apps/floating-coast-89436
+- https://desolate-taiga-02219.herokuapp.com/
 
 ## Current video link
 
-- https://drive.google.com/file/d/1_b3DoQmdDU45d69HiS3UEuRPHf07NBRn/view?usp=sharing
+- https://drive.google.com/file/d/16g_8RoxI7H-tNjPavBGldyXX045H6sQj/view?usp=sharing
 
 
 ## Getting Started
