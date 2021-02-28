@@ -10,6 +10,9 @@ module GroupsHelper
   end
 
   def group_discussion(group, discussion)
-    render './discussions/discussion_form', current_group: group, discussion: discussion if (group.members.include?(current_user) or group.creator == current_user)
+    path = './discussions/discussion_form'
+    attrs = { current_group: group, discussion: discussion }
+
+    render path, attrs if group.members.include?(current_user) or group.creator == current_user
   end
 end

@@ -29,7 +29,9 @@
                     </div>
                     <div class = "pl-2 d-flex flex-column w-100 mb-3">
                       <%= link_to d.author.username, user_path(d.author.username) %>
-                      <%= d.text %>
+                      <p class="font-varela">
+                        <%= d.text %>
+                      </p>                      
                     </div>
                     <%= discussion_delete(d) %>
                   </div>
@@ -49,7 +51,9 @@
                             <% end %>
                             <div class="pl-2 d-flex flex-column w-100 ">
                               <%= link_to c.author.username, user_path(c.author.username) %>
-                              <%= c.text %>
+                              <p class="font-varela">
+                                <%= c.text %>
+                              </p>                              
                             </div>
                             <%= delete_discussion_comment(d,c)%>
                           </div>

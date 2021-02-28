@@ -11,10 +11,8 @@ class DiscussionsController < ApplicationController
     if @discussion.save
       current_group.discussions << @discussion
       current_user.discussions << @discussion
-      redirect_back(fallback_location: group_path(current_group.id))
-    else
-      redirect_back(fallback_location: group_path(current_group.id))
     end
+    redirect_back(fallback_location: group_path(current_group.id))
   end
 
   def destroy
