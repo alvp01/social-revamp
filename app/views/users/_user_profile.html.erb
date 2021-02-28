@@ -2,24 +2,20 @@
   <div class="w-100 d-flex flex-column align-items-center pb-3">
     <%= image_tag("default-profile.png", class: "rounded-circle profile-img") %>
     <%= link_to user.username, user_path(user.username) %>
-    <% if !current_user.followees.include?(user) %>
-      <%= button_to 'Follow', follow_user_path(id: user.id), class: "btn-link", method: 'post' %>
-    <% else %>
-      <%= button_to 'Unfollow', unfollow_user_path(id: user.id), class: "btn-link", method: 'post' %>
-    <% end %>
+    <%= follow_unfollow(user) %>
   </div>
-  <div class="w-100 d-flex flex-row border-top border-bottom border-success">
-    <div class="col flex-column border-right border-success pt-3 text-center pr-3">
-      <p>Post:</p>
-      <p><%= user.posts.count %></p>      
+  <div class="w-100 d-flex flex-row border-top border-bottom border-secondary">
+    <div class="col flex-column border-right border-secondary pt-3 text-center pr-3">
+      <p class="text-bold font-nunito">Post:</p>
+      <p class="text-bold font-nunito"><%= user.posts.count %></p>      
     </div>
-    <div class="col flex-column border-right border-success pt-3 text-center pr-3">
-      <p>Followers:</p>
-      <p><%= user.followers.count %></p>      
+    <div class="col flex-column border-right border-secondary pt-3 text-center pr-3">
+      <p class="text-bold font-nunito">Followers:</p>
+      <p class="text-bold font-nunito"><%= user.followers.count %></p>      
     </div>
     <div class="col flex-column pl-2 pt-3 text-center">
-      <p>Following:</p>
-      <p><%= user.followees.count %></p>
+      <p class="text-bold font-nunito">Following:</p>
+      <p class="text-bold font-nunito"><%= user.followees.count %></p>
     </div>
   </div>
 </div>

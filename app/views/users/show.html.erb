@@ -7,6 +7,8 @@
       <%= render 'layouts/nav_user' %>
       <div class="row pt-5 light-background">
         <div class="col-9 align-self-stretch">
+          <div class="cover-img w-100 mb-2">
+          </div>
           <%= profile_post(@user, @post) %>
           <div class="row">
             <div class="col">
@@ -19,15 +21,18 @@
                       <% end %>
                     </div>
                     <div class = "pl-2 d-flex flex-column w-100 mb-3">
-                      <%= link_to p.author.username, user_path(p.author.username) %>
-                      <%= p.text %>
+                      <%= link_to p.author.fullname, user_path(p.author.username), class: "font-nunito user-profile-link text-bold" %>
+                      <p class="font-varela">
+                        <%= p.text %>
+                      </p>                      
                     </div>
+                    <%= delete_post(p) %>
                   </div>
                   <div class="d-flex flex-column py-3" >
                     <%= form_for(p.comments.new, url: post_comments_path(p)) do |form| %>
                       <div class="d-flex flex-wrap justify-content-end post-form-container">
                         <%= form.text_area :text, id: :text_content, class: 'post-form-field form-resize-none w-100', placeholder: 'Add new Comment' %>
-                        <%= form.submit 'Comment', class: 'btn-link' %>
+                        <%= form.submit 'Comment', class: 'btn-link font-varela' %>
                       </div>
                     <% end %>
                     <% if p.comments %>
@@ -38,9 +43,12 @@
                               <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
                             <% end %>
                             <div class="pl-2 d-flex flex-column w-100 ">
-                              <%= link_to c.author.username, user_path(c.author.username) %>
-                              <%= c.text %>
+                              <%= link_to c.author.fullname, user_path(c.author.username), class: "font-nunito user-profile-link text-bold" %>
+                              <p class="font-varela">
+                                <%= c.text %>
+                              </p>
                             </div>
+                            <%= delete_post_comment(p, c) %>
                           </div>
                         <%end%>
                       <% end %>
@@ -54,8 +62,8 @@
         <div class="col align-self-stretch">
           <%= profile_owner(@user) %>
           <section>
-            <h4>Followed by</h4>
-            <div class="">
+            <h4 class="font-roboto">Followed by</h4>
+            <div>
               <%= render partial: "users/user", collection: @followers %>
             </div>
           </section>
