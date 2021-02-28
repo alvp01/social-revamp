@@ -13,16 +13,6 @@
 - Populator
 - Rspec
 
-## Rails DB Seed
-
-I provided the project with seed to populate the database. <br>
-Run the following commands to have some initial data in the app:
-```
-rails db:create
-rails db:migrate
-rails db:seed
-```
-
 ## Live Demo
 
 - https://dashboard.heroku.com/apps/floating-coast-89436
@@ -58,6 +48,7 @@ Setup database with:
 ```
 
 >If the user wants to seed the database with initial data they should run `rails db:seed`
+>Only for development
 
 ### Usage
 
