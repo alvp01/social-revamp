@@ -1,10 +1,10 @@
-@import url('https://fonts.googleapis.com/css2?family=Dosis&family=Nunito:wght@400;700&family=Roboto+Condensed:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto+Condensed:wght@700&family=Varela+Round&display=swap');
 
 .font-roboto { font-family: 'Roboto Condensed', sans-serif; }//Headers|titles
 
 .font-nunito { font-family: 'Nunito', sans-serif; }//Nav-links
 
-.font-dosis { font-family: 'Dosis', sans-serif; }//Text
+.font-varela { font-family: 'Varela Round', sans-serif; }//Text
 
 .text-bold { font-weight: bold !important; }
 
@@ -26,7 +26,7 @@
   height: 65px;
 }
 
-.btn-link {
+.btn-link, .btn-delete {
   background-color: transparent;
   border-style: none;
   text-decoration: none;
@@ -36,6 +36,12 @@
 
 .btn-link:hover {
   background-color: #007bff;
+  text-decoration: none !important;
+  color: white !important;
+}
+
+.btn-delete:hover {
+  background-color: #df1d57;
   text-decoration: none !important;
   color: white !important;
 }
@@ -87,12 +93,12 @@
   border-bottom: 2px solid #e6e6e6;
 }
 
-.username-profile-link, .user-profile-link {
+.username-profile-link, .user-profile-link, .group-link {
   text-decoration: none;
   color: black;
 }
 
-.user-profile-link:hover, .username-profile-link:hover {
+.user-profile-link:hover, .username-profile-link:hover, .group-link:hover {
   color: #5284b6;
   text-decoration: none;
 }

@@ -9,11 +9,11 @@
         <div class="col-9">
           <div class="row mb-3 px-3">
             <div class="col p-5 bg-white rounded">
-              <h2>Post something</h2>
+              <h2 class="font-roboto">Post something</h2>
               <%= form_with model: @post do |form| %>
                 <div class="d-flex flex-wrap justify-content-end post-form-container">
                   <%= form.text_area :text, class: 'post-form-field form-resize-none w-100', placeholder: 'Add New Post' %>
-                  <%= form.submit 'Publish', class: 'btn-link' %>
+                  <%= form.submit 'Publish', class: 'btn-link font-varela' %>
                 </div>
               <% end %>
             </div>
@@ -25,22 +25,22 @@
                   <div class="d-flex flex-row">
                     <div>
                       <%= link_to user_path(p.author.username) do %>
-                      <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                        <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
                       <% end %>
                     </div>
                     <div class="pl-2 d-flex flex-column w-100 mb-3">
-                      <%= link_to p.author.username, user_path(p.author.username) %>
-                      <%= p.text %>
+                      <%= link_to p.author.fullname, user_path(p.author.username), class: "font-nunito user-profile-link text-bold" %>
+                      <p class="font-varela">
+                        <%= p.text %>
+                      </p>                      
                     </div>
+                    <%= delete_post(p) %>
                   </div>
-                  <% if p.author == current_user %>
-                    <%= button_to 'Delete', post_path(p), method: :delete, action: :destroy %>
-                  <% end %>
                   <div class="d-flex flex-column py-3">
                     <%= form_for(p.comments.new, url: post_comments_path(p)) do |form| %>
                       <div class="d-flex flex-wrap justify-content-end post-form-container">
                         <%= form.text_area :text, id: :text_content, class: 'post-form-field form-resize-none w-100', placeholder: 'Add new Comment' %>
-                        <%= form.submit 'Comment', class: 'btn-link' %>
+                        <%= form.submit 'Comment', class: 'btn-link font-varela' %>
                       </div>
                     <% end %>
                     <% if p.comments %>
@@ -51,8 +51,10 @@
                               <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
                             <% end %>
                             <div class="pl-2 d-flex flex-column w-100 ">
-                              <%= link_to c.author.username, user_path(c.author.username) %>
-                              <%= c.text %>
+                              <%= link_to c.author.fullname, user_path(c.author.username), class: "font-nunito user-profile-link text-bold" %>
+                              <p class="font-varela">
+                                <%= c.text %>
+                              </p>                              
                             </div>
                             <% if c.author == current_user %>
                               <%= button_to 'Delete', post_comment_path(p.id, c.id), method: :delete %>
@@ -68,12 +70,12 @@
           </div>
         </div>
         <div class="col align-self-stretch">
-          <h4>Who to follow</h4>
+          <h4 class="font-roboto">Who to follow</h4>
           <div class="">
             <%= render @user_timeline %>
           </div>
           <div>
-            <h4>Groups</h4>
+            <h4 class="font-roboto">Groups</h4>
             <%= button_to "create group", new_group_path, method: :get %>
             <% @groups.each do |g|%>
             <div class="d-flex flex-row py-2">
