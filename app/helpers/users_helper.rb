@@ -10,4 +10,8 @@ module UsersHelper
   def delete_post(post)
     render './components/delete_post_button', post: post if current_user == post.author
   end
+
+  def delete_post_comment(post, comment)
+    render './components/delete_post_comment_button', post: post, comment: comment if current_user == comment.author
+  end
 end

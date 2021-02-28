@@ -56,9 +56,7 @@
                                 <%= c.text %>
                               </p>                              
                             </div>
-                            <% if c.author == current_user %>
-                              <%= button_to 'Delete', post_comment_path(p.id, c.id), method: :delete %>
-                            <% end %>
+                            <%= delete_post_comment(p, c) %>
                           </div>
                         <%end%>
                       <% end %>
