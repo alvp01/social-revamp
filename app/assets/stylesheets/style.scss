@@ -26,7 +26,9 @@
   height: 65px;
 }
 
-.btn-link, .btn-delete, .btn-create-join {
+.btn-link,
+.btn-delete,
+.btn-create-join {
   background-color: transparent;
   border-style: none;
   text-decoration: none;
@@ -73,7 +75,8 @@
   height: 100px;
 }
 
-.group-info, .cover-img {
+.group-info,
+.cover-img {
   background-image: url(background-4973341_1920.jpg);
   height: 275px;
 }
@@ -99,12 +102,14 @@
   border-bottom: 2px solid #e6e6e6;
 }
 
-.username-profile-link, .user-profile-link {
+.username-profile-link,
+.user-profile-link {
   text-decoration: none;
   color: black;
 }
 
-.user-profile-link:hover, .username-profile-link:hover {
+.user-profile-link:hover,
+.username-profile-link:hover {
   color: #5284b6;
   text-decoration: none;
 }
