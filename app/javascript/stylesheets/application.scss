@@ -1,1 +1,130 @@
 @import './bootstrap_custom.scss';
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Roboto+Condensed:wght@700&family=Varela+Round&display=swap');
+
+.font-roboto { font-family: 'Roboto Condensed', sans-serif; }//Headers|titles
+
+.font-nunito { font-family: 'Nunito', sans-serif; }//Nav-links
+
+.font-varela { font-family: 'Varela Round', sans-serif; }//Text
+
+.text-bold { font-weight: bold !important; }
+
+.no-overflow-x {
+  overflow-x: hidden;
+}
+
+.light-background {
+  background-color: #f2f2f2;
+}
+
+.lat-bar {
+  min-height: 100vh;
+  align-self: stretch;
+}
+
+.lat-bar-img {
+  width: 65px;
+  height: 65px;
+}
+
+.btn-link,
+.btn-delete,
+.btn-create-join {
+  background-color: transparent;
+  border-style: none;
+  text-decoration: none;
+  border-radius: 5px;
+  padding: 5px 15px;
+}
+
+.btn-link:hover {
+  background-color: #007bff;
+  text-decoration: none !important;
+  color: white !important;
+}
+
+.btn-delete:hover {
+  background-color: #df1d57;
+  text-decoration: none !important;
+  color: white !important;
+}
+
+.btn-create-join:hover {
+  background-color: #29ac3f;
+  text-decoration: none !important;
+  color: white !important;
+}
+
+.form-resize-none {
+  resize: none;
+}
+
+.post-form-container {
+  border-radius: 5px;
+  border-color: #e6e6e6;
+  border-style: solid;
+  border-width: 2px;
+}
+
+.post-form-field {
+  display: inline-block;
+  border-style: none;
+}
+
+.profile-img {
+  width: 100px;
+  height: 100px;
+}
+
+.group-info,
+.cover-img {
+  background-image: url(background-4973341_1920.jpg);
+  height: 275px;
+}
+
+.capitalize-text {
+  text-transform: capitalize;
+}
+
+.group-name-field {
+  width: 100%;
+  position: relative;
+  z-index: 1;
+}
+
+.group-name-field::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 1px;
+  left: 40%;
+  bottom: 1px;
+  border-bottom: 2px solid #e6e6e6;
+}
+
+.username-profile-link {
+  font-size: 14px;
+}
+
+.username-profile-link,
+.user-profile-link {
+  text-decoration: none;
+  color: black;
+}
+
+.user-profile-link:hover,
+.username-profile-link:hover {
+  color: #5284b6;
+  text-decoration: none;
+}
+
+.group-link {
+  color: #5284b6;
+  text-decoration: none;
+}
+
+.group-link:hover {
+  text-decoration: none;
+  color: black;
+}
