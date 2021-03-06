@@ -35,6 +35,7 @@ group :development, :test do
   gem 'faker', '~> 2.16'
   gem 'populator', '~> 1.0'
   gem 'rubocop', '~> 1.10'
+  gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
 end
 
 group :development do
@@ -54,6 +55,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of web drivers to run system tests with browsers
   gem 'webdrivers'
+  gem 'rspec', '~> 3.10'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
