@@ -20,13 +20,15 @@ RSpec.describe Post, type: :model do
     end
 
     it 'validates the object to have proper attributes to be valid' do
-      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                        photo: '', coverimage: '' })
       p = Post.new({ text: 'My nice post', AuthorId: u.id })
       expect(p.valid?).to be_truthy
     end
 
     it 'validates content presence' do
-      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                        photo: '', coverimage: '' })
       p = Post.new({ AuthorId: u.id })
       expect(p.valid?).to be_falsy
     end

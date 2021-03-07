@@ -8,7 +8,8 @@ RSpec.describe Group, type: :model do
     end
 
     it 'assigns the values passed' do
-      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                        photo: '', coverimage: '' })
       g = Group.new({ group_name: 'derpus', group_description: 'Derpos Maximus', creator_id: u.id, cover_image: '' })
       expect(g.group_name).to eql('derpus')
     end
@@ -21,15 +22,17 @@ RSpec.describe Group, type: :model do
     end
 
     it 'validates the object to have proper attributes to be valid' do
-      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                        photo: '', coverimage: '' })
       g = Group.new({ group_name: 'derpus', group_description: 'Derpos Maximus', creator_id: u.id, cover_image: '' })
       expect(g.valid?).to be_truthy
     end
 
     it 'validates group name uniqueness' do
-      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                        photo: '', coverimage: '' })
       g = Group.create({ group_name: 'derpus', group_description: 'Derpos Maximus', creator_id: u.id, cover_image: '' })
-      h = Group.new({ group_name: 'derpus', group_description: 'Derpo 2', creator_id: u.id, cover_image: '' })
+      h = Group.new({ group_name: g.group_name, group_description: 'Derpo 2', creator_id: u.id, cover_image: '' })
       expect(h.valid?).to be_falsy
     end
   end

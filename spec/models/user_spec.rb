@@ -8,7 +8,8 @@ RSpec.describe User, type: :model do
     end
 
     it 'assigns the values passed' do
-      u = User.new({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.new({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                     photo: '', coverimage: '' })
       expect(u.username).to eql('derpus')
     end
   end
@@ -20,21 +21,26 @@ RSpec.describe User, type: :model do
     end
 
     it 'validates the object to have proper attributes to be valid' do
-      u = User.new({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.new({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                     photo: '', coverimage: '' })
       expect(u.valid?).to be_truthy
     end
 
     it 'validates email uniqueness' do
-      x = User.new({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      x = User.new({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                     photo: '', coverimage: '' })
       x.save
-      u = User.new({ username: 'herpus', fullname: 'Herpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.new({ username: 'herpus', fullname: 'Herpos Maximus', email: 'derpo@derp.com', password: '123456',
+                     photo: '', coverimage: '' })
       expect(u.valid?).to be_falsy
     end
 
     it 'validates username uniqueness' do
-      x = User.new({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      x = User.new({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                     photo: '', coverimage: '' })
       x.save
-      u = User.new({ username: 'derpus', fullname: 'Herpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.new({ username: 'derpus', fullname: 'Herpos Maximus', email: 'derpo@derp.com', password: '123456',
+                     photo: '', coverimage: '' })
       expect(u.valid?).to be_falsy
     end
   end

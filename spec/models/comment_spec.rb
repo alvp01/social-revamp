@@ -20,14 +20,16 @@ RSpec.describe Comment, type: :model do
     end
 
     it 'validates the object to have proper attributes to be valid (post)' do
-      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                        photo: '', coverimage: '' })
       p = Post.create({ text: 'My nice post', AuthorId: u.id })
       c = Comment.new({ text: 'My nice comment', AuthorId: u.id, commentable_id: p.id, commentable_type: 'Post' })
       expect(c.valid?).to be_truthy
     end
 
     it 'validates the object to have proper attributes to be valid (discussion)' do
-      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
+      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                        photo: '', coverimage: '' })
       g = Group.create({ group_name: 'derpus', group_description: 'Derpos Maximus', creator_id: u.id, cover_image: '' })
       d = Discussion.create({ text: 'My nice post', AuthorId: u.id, group_id: g.id })
       c = Comment.new({ text: 'My nice comment', AuthorId: u.id, commentable_id: d.id, commentable_type: 'Discussion' })
@@ -35,8 +37,9 @@ RSpec.describe Comment, type: :model do
     end
 
     it 'validates text presence' do
-      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456', photo: '', coverimage: '' })
-      p = Post.create({ text: 'text here' ,AuthorId: u.id })
+      u = User.create({ username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                        photo: '', coverimage: '' })
+      p = Post.create({ text: 'text here', AuthorId: u.id })
       c = Comment.new({ AuthorId: u.id, commentable_id: p.id, commentable_type: 'Post' })
       expect(c.valid?).to be_falsy
     end
