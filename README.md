@@ -46,6 +46,11 @@ Setup database with:
    rails db:create
    rails db:migrate
 ```
+update yarn dependencies with:
+
+```
+ yarn
+```
 
 >If the user wants to seed the database with initial data they should run `rails db:seed`
 >Only for development
