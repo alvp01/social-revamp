@@ -36,6 +36,7 @@ group :development, :test do
   gem 'populator', '~> 1.0'
   gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
   gem 'rubocop', '~> 1.10'
+  gem 'rails-controller-testing'
 end
 
 group :development do
