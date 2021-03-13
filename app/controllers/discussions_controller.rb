@@ -1,8 +1,4 @@
 class DiscussionsController < ApplicationController
-  def new
-    @discussion = Post.new
-  end
-
   def create
     @discussion = Discussion.new(discussion_params)
     current_group = Group.find(@discussion.group_id)

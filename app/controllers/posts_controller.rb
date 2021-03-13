@@ -1,23 +1,25 @@
 class PostsController < ApplicationController
-  def new
-    @post = Post.new
-  end
-
   def create
     @post = current_user.posts.new(post_params)
-    respond_to do |f|
+    
       if @post.save
-        f.html { redirect_to '', notice: 'Post created!' }
+        flash.now[:notice] = 'Post created'
+        redirect_back(fallback_location: root_path)
       else
-        f.html { redirect_to '', notice: 'Post could not be created!' }
+        flash.now[:notice] = 'Post could not be created'
+        redirect_back(fallback_location: root_path)
       end
-    end
+
   end
 
   def destroy
-    Post.find(params[:id]).delete
-    flash[:success] = 'Post deleted'
-    redirect_back(fallback_location: root_path)
+    if Post.find(params[:id]).delete
+      flash.now[:notice] = 'Post deleted'
+      redirect_back(fallback_location: root_path)
+    else
+      flash.now[:notice] = 'Post could not be deleted'
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   private
