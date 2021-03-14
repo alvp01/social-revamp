@@ -1,8 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe UsersController do
-  let(:u) {User.create! username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
-    photo: '', coverimage: '' } 
+  let(:u) do
+    User.create! username: 'derpus', fullname: 'Derpos Maximus', email: 'derpo@derp.com', password: '123456',
+                 photo: '', coverimage: ''
+  end
 
   describe 'GET index' do
     it 'assigns @groups' do
@@ -21,13 +23,13 @@ RSpec.describe UsersController do
     it 'assigns @post' do
       sign_in(u)
       get :index
-      expect(assigns(:post)).to be_a(Object) 
+      expect(assigns(:post)).to be_a(Object)
     end
 
     it 'assigns @comment' do
       sign_in(u)
       get :index
-      expect(assigns(:comment)).to be_a(Object) 
+      expect(assigns(:comment)).to be_a(Object)
     end
 
     it 'renders the index template' do

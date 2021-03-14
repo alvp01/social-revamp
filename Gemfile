@@ -34,9 +34,9 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'faker', '~> 2.16'
   gem 'populator', '~> 1.0'
+  gem 'rails-controller-testing'
   gem 'rspec-rails', '~> 4.0', '>= 4.0.2'
   gem 'rubocop', '~> 1.10'
-  gem 'rails-controller-testing'
 end
 
 group :development do
