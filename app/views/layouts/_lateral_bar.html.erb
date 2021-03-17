@@ -1,0 +1,43 @@
+<div class="w-100 flex-column mb-3">
+  <div class="d-flex flex-row w-100 pb-3 border-bottom px-5">
+    <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+    <p class='h4 text-light text-bold pl-2 align-self-center font-nunito'>
+      <%= current_user.fullname %>
+    </p>
+  </div>
+  <div class="w-100 d-flex flex-row border-bottom px-4">
+    <div class="w-50 d-flex flex-column border-right pt-3 text-center pr-3">
+      <p class="text-secondary font-nunito text-bold">
+        Following:
+      </p>
+      <p class="text-bold text-light font-nunito">
+        <%= current_user.followees.count %>
+      </p>
+    </div>
+    <div class="w-50 d-flex flex-column pl-2 pt-3 text-center">
+      <p class="text-secondary font-nunito text-bold">
+        Followers:
+      </p>
+      <p class="text-bold text-light font-nunito">
+        <%= current_user.followers.count %>
+      </p>
+    </div>
+  </div>
+</div>
+<ul class="nav flex-column w-100 px-4 align-items-center">
+  <li class="nav-item">
+    <%= link_to root_path, class: "nav-link font-nunito text-white text-bold" do %>
+      <%= icon("house-fill") %> Home
+    <% end %>
+  </li>  
+  <li class="nav-item d-flex flex-row">
+    <%= link_to user_path(current_user.username), class: "nav-link font-nunito text-white text-bold" do %>
+      <%= icon("person-fill") %> Profile
+    <% end %>
+  </li>
+  <li class="nav-item d-flex flex-row">
+    <%= link_to destroy_user_session_path, :method => :delete, class: "nav-link font-nunito text-white text-bold" do %>
+      <%= icon("door-open-fill") %> Log out
+    <% end %>
+  </li>
+</ul>

@@ -1,3 +1,22 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  devise_for :users, controllers: {
+    sessions: 'users/sessions'
+  }
+
+  post 'users/:id/follow', to: 'users#follow', as: 'follow_user'
+  post 'users/:id/unfollow', to: 'users#unfollow', as: 'unfollow_user'
+  get '/users', to: 'users#index'
+  get '/:username', to: 'users#show', as: "user"
+  resources :posts, only: %i[create destroy] do
+    resources :comments, only: %i[create destroy]
+  end
+  resources :discussions, only: %i[create destroy] do
+    resources :comments, only: %i[create destroy]
+  end
+
+  resources :groups, only: %i[new create destroy show]
+  post 'groups/:id/join', to: 'groups#join', as: 'group_join'
+  post 'groups/:id/leave', to: 'groups#leave', as: 'group_leave'
+
+  root to: 'users#index'
 end

@@ -1,0 +1,95 @@
+<div class="container-flex overflow-hidden">
+  <div class="row">
+    <div class="col-2 bg-dark lat-bar pt-3 px-0">
+      <%= render 'layouts/lateral_bar' %>
+    </div>
+    <div class="col pr-4">
+      <%= render 'layouts/nav_user' %>
+      <div class="row pt-5 light-background">
+        <div class="col-9">
+          <div class="row mb-3 px-3">
+            <div class="col p-5 bg-white rounded">
+              <h2 class="font-roboto">Post something</h2>
+              <%= form_with model: @post do |form| %>
+                <div class="d-flex flex-wrap justify-content-end post-form-container">
+                  <%= form.text_area :text, class: 'post-form-field form-resize-none w-100', placeholder: 'Add New Post' %>
+                  <%= form.submit 'Publish', class: 'btn-link font-varela' %>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <div class="row mt-5">
+            <div class="col">
+              <% @timeline_posts.each do |p| %>
+                <div class="p-3 mb-2 d-flex flex-column bg-white rounded">
+                  <div class="d-flex flex-row">
+                    <div>
+                      <%= link_to user_path(p.author.username) do %>
+                        <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                      <% end %>
+                    </div>
+                    <div class="pl-2 d-flex flex-column w-100 mb-3">
+                      <%= link_to p.author.fullname, user_path(p.author.username), class: "font-nunito user-profile-link text-bold" %>
+                      <p class="font-varela">
+                        <%= p.text %>
+                      </p>                      
+                    </div>
+                    <%= delete_post(p) %>
+                  </div>
+                  <div class="d-flex flex-column py-3">
+                    <%= form_for(p.comments.new, url: post_comments_path(p)) do |form| %>
+                      <div class="d-flex flex-wrap justify-content-end post-form-container">
+                        <%= form.text_area :text, id: :text_content, class: 'post-form-field form-resize-none w-100', placeholder: 'Add new Comment' %>
+                        <%= form.submit 'Comment', class: 'btn-link font-varela' %>
+                      </div>
+                    <% end %>
+                    <% if p.comments %>
+                      <% p.comments.each do |c| %>
+                        <% if c.id %>
+                          <div class="d-flex flex-row py-3">
+                            <%= link_to user_path(c.author.username) do %>
+                              <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                            <% end %>
+                            <div class="pl-2 d-flex flex-column w-100 ">
+                              <%= link_to c.author.fullname, user_path(c.author.username), class: "font-nunito user-profile-link text-bold" %>
+                              <p class="font-varela">
+                                <%= c.text %>
+                              </p>                              
+                            </div>
+                            <%= delete_post_comment(p, c) %>
+                          </div>
+                        <%end%>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col align-self-stretch">
+          <h4 class="font-roboto">Who to follow</h4>
+          <div class="mb-5">
+            <%= render @user_timeline %>
+          </div>
+          <div>
+            <h4 class="font-roboto mb-4">Groups</h4>
+            <%= button_to "create group", new_group_path, method: :get, class: "mb-3 btn-create-join font-varela" %>
+            <% @groups.each do |g|%>
+              <div class="d-flex flex-row py-2 align-items-center">
+                <div class="mr-2">
+                  <%= link_to group_path(g.id) do %>
+                    <%= image_tag("default-group.png", class: "rounded lat-bar-img") %>
+                  <% end %>
+                </div>
+                <div class="pl-2 d-flex flex-column w-100 mb-3">
+                  <%= link_to g.group_name, group_path(g.id), class: "group-link font-nunito text-bold" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

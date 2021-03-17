@@ -1,0 +1,86 @@
+<div class="container-flex overflow-hidden">
+  <div class="row">
+    <div class="col-2 bg-dark lat-bar pt-3 px-0">
+      <%= render 'layouts/lateral_bar' %>
+    </div>
+    <div class="col pr-4">
+      <%= render 'layouts/nav_user' %>
+      <div class="d-flex flex-column w-100 group-info p-5">
+        <h2 class="capitalize-text display-4 font-roboto"> <%= @current_group.group_name %> </h2>
+        <p class="text-bold text-varela">
+          <%= @current_group.group_description%>
+        </p>
+        <div class="align-self-end">
+          <%= join_leave_delete(@current_group) %>
+        </div>        
+      </div>
+      <div class="row pt-5 light-background">
+        <div class="col-9">
+          <%= group_discussion(@current_group, @discussion) %>
+          <div class="row mt-5 align-self-stretch">
+            <div class="col">
+              <% @discussion_timeline.each do |d| %>
+                <div class="p-3 mb-2 d-flex flex-column bg-white rounded">
+                  <div class="d-flex flex-row">
+                    <div>
+                      <%= link_to user_path(d.author.username) do %>
+                        <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                      <% end %>
+                    </div>
+                    <div class = "pl-2 d-flex flex-column w-100 mb-3">
+                      <%= link_to d.author.username, user_path(d.author.username) %>
+                      <p class="font-varela">
+                        <%= d.text %>
+                      </p>                      
+                    </div>
+                    <%= discussion_delete(d) %>
+                  </div>
+                  <div class="d-flex flex-column py-3" >
+                    <%= form_for(d.comments.new, url: discussion_comments_path(d)) do |form| %>
+                      <div class="d-flex flex-wrap justify-content-end post-form-container">
+                        <%= form.text_area :text, id: :text_content, class: 'post-form-field form-resize-none w-100', placeholder: 'Add new Comment' %>
+                        <%= form.submit 'Comment', class: 'btn-link font-varela' %>
+                      </div>
+                    <% end %>
+                    <% if d.comments %>
+                      <% d.comments.each do |c| %>
+                        <% if c.id %>
+                          <div class="d-flex flex-row py-3">
+                            <%= link_to user_path(c.author.username) do %>
+                              <%= image_tag("default-profile.png", class: "rounded lat-bar-img") %>
+                            <% end %>
+                            <div class="pl-2 d-flex flex-column w-100 ">
+                              <%= link_to c.author.username, user_path(c.author.username) %>
+                              <p class="font-varela">
+                                <%= c.text %>
+                              </p>                              
+                            </div>
+                            <%= delete_discussion_comment(d,c)%>
+                          </div>
+                        <%end%>
+                      <% end %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <div class="col align-self-stretch">
+          <div class="mb-5">
+            <h4 class="font-roboto">Creator</h4>
+            <div>
+              <%= render @creator %>
+            </div>
+          </div>
+          <div>
+            <h4 class="font-roboto">Members</h4>
+            <div>
+              <%= render @members %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

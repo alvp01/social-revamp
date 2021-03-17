@@ -1,0 +1,5 @@
+<% unless user_signed_in? %>
+  <%= render '/layouts/nav_guest' %>
+<% else %>
+  <%= render '/layouts/nav_user' %>
+<% end %>

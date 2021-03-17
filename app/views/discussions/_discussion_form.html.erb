@@ -1,0 +1,12 @@
+<div class="row mb-3 px-3">
+  <div class="col p-5 bg-white rounded">
+    <h2 class="font-roboto">Discuss something</h2>
+    <%= form_with model: discussion do |form| %>
+      <div class="d-flex flex-wrap justify-content-end post-form-container">
+        <%= form.text_area :text, class: 'post-form-field form-resize-none w-100', placeholder: 'Add New Discussion' %>
+        <%= form.hidden_field :group_id, :value => current_group.id %>
+        <%= form.submit 'Publish', class: 'btn-link font-varela' %>
+      </div>
+    <% end %>
+  </div>
+</div>
