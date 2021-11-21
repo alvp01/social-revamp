@@ -76,7 +76,7 @@ Open `http://localhost:3000/` in your browser.
 
 - Github: [@alvp01](https://github.com/alvp01/)
 - Twitter: [@alvp01](https://twitter.com/alvp01/)
-- Linkedin: [alvp01](https://www.linkedin.com/in/alvp01/)
+- Linkedin: [alvp01](https://www.linkedin.com/in/abel-lavieri/)
 
 ## 🤝 Contributing
 
